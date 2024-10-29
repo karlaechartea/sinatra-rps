@@ -2,39 +2,62 @@ require "sinatra"
 require "sinatra/reloader"
 
 get("/") do
-  "
-  <h1>Welcome to your Sinatra App!</h1>
-  <p>Define some routes in app.rb</p>
-  "
+  erb(:homepage)
 end
 
 get("/rock") do
 
  moves =  ["rock", "paper", "scissors"]
 
- comp_move = moves.sample
+ @comp_move = moves.sample
 
- if comp_move == "rock"
-    outcome ="tied"
+ if @comp_move == "rock"
+    @outcome ="tied"
 
- elsif comp_move == "paper"
-    outcome = "lost"
+ elsif @comp_move == "paper"
+    @outcome = "lost"
 
  else
-    outcome = "won"
+    @outcome = "won"
  end
 
-  "
-  <h2>
-  We played rock!
-  </h2>
-
-    <h2>
-  They played #{comp_move}!
-  </h2>
-
-    <h2>
-  We #{outcome}!
-  </h2>
-  "
+ erb(:zebrarock)
 end
+
+get("/paper") do
+
+   moves =  ["rock", "paper", "scissors"]
+  
+   @comp_move = moves.sample
+  
+   if @comp_move == "paper"
+      @outcome ="tied"
+  
+   elsif @comp_move == "scissors"
+      @outcome = "lost"
+  
+   else
+      @outcome = "won"
+   end
+  
+   erb(:zebrapaper)
+  end
+
+  get("/scissors") do
+
+   moves =  ["rock", "paper", "scissors"]
+  
+   @comp_move = moves.sample
+  
+   if @comp_move == "scissors"
+      @outcome ="tied"
+  
+   elsif @comp_move == "rock"
+      @outcome = "lost"
+  
+   else
+      @outcome = "won"
+   end
+  
+   erb(:zebrascissors)
+  end
